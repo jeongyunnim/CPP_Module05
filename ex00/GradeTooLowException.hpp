@@ -1,25 +1,10 @@
 #include "Bureaucrat.hpp"
-
-class Bureaucrat
+#include <iostream>
+class Bureaucrat::GradeTooLowException : std::exception
 {
-
 public:
 
-	const std::string&	getName(void) const;
-	int					getGrade(void) const;
+	GradeTooLowException(void);
 
-	Bureaucrat(void);
-	~Bureaucrat(void);
-	Bureaucrat& operator=(const Bureaucrat& rhs);
-	Bureaucrat(const Bureaucrat& other);
-	
-	Bureaucrat(std::string name, int grade);
-	void	increaseGrade(void);
-	void	decreaseGrade(void);
-
-private:
-
-	std::string _name;
-	int			_grade;
-
+	const char* what() const throw();
 };
