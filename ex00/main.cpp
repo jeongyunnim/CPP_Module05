@@ -1,10 +1,16 @@
 #include "Bureaucrat.hpp"
 
+void leak()
+{
+	system("leaks $PPID");
+}
+
 int main()
 {
-	Bureaucrat *president;
-	Bureaucrat *slave;
+	Bureaucrat *president = NULL;
+	Bureaucrat *slave = NULL;
 
+	atexit(leak);
 	std::cout << "\n-----------<<Constructor Grade Range Too High Exception Test>>-----------" << std::endl;
 	try
 	{
@@ -12,7 +18,7 @@ int main()
 		std::cout << *president << std::endl;
 		delete president;
 	}
-	catch (const std::exception& e)
+	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << '\n';
 	}
@@ -24,7 +30,7 @@ int main()
 		std::cout << *slave << std::endl;
 		delete slave;
 	}
-	catch (const std::exception& e)
+	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << '\n';
 	}
@@ -39,9 +45,11 @@ int main()
 			slave->decreaseGrade();
 		}
 		std::cout << *slave << std::endl;
+		delete slave;
 	}
-	catch (const std::exception& e)
+	catch (const std::exception &e)
 	{
+		delete slave;
 		std::cerr << e.what() << '\n';
 	}
 
@@ -55,9 +63,11 @@ int main()
 			slave->increaseGrade();
 		}
 		std::cout << *slave << std::endl;
+		delete slave;
 	}
-	catch (const std::exception& e)
+	catch (const std::exception &e)
 	{
+		delete slave;
 		std::cerr << e.what() << '\n';
 	}
 
