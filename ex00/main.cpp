@@ -49,7 +49,8 @@ int main()
 	}
 	catch (const std::exception &e)
 	{
-		delete slave;
+		if (slave != NULL)
+			delete slave;
 		std::cerr << e.what() << '\n';
 	}
 
@@ -67,7 +68,8 @@ int main()
 	}
 	catch (const std::exception &e)
 	{
-		delete slave;
+		if (slave != NULL)
+			delete slave;
 		std::cerr << e.what() << '\n';
 	}
 
