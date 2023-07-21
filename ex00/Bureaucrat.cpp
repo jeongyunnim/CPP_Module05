@@ -1,6 +1,14 @@
 #include "Bureaucrat.hpp"
-#include "GradeTooHighException.hpp"
-#include "GradeTooLowException.hpp"
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Grade too low: grade range is 1 - 150");
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Grade too High: grade range is 1 - 150");
+}
 
 const std::string&	Bureaucrat::getName(void) const
 {
@@ -33,11 +41,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 {
 	if (grade < 1)
 	{
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	}
-	else if (grade > 100)
+	else if (grade > 150)
 	{
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	}
 }
 
@@ -49,7 +57,7 @@ Bureaucrat::Bureaucrat(int grade)
 	{
 		throw GradeTooHighException();
 	}
-	else if (grade > 100)
+	else if (grade > 150)
 	{
 		throw GradeTooLowException();
 	}
@@ -57,16 +65,22 @@ Bureaucrat::Bureaucrat(int grade)
 
 Bureaucrat::Bureaucrat(std::string name)
 	:	_name(name)
-	,	_grade(100)
+	,	_grade(150)
 {}
 
 void	Bureaucrat::increaseGrade(void)
 {
-
+	if (_grade == 1)
+		throw GradeTooHighException();
+	_grade -= 1;
+	std::cout << _name << " is promoted. He is " << _grade << " now!" <<std::endl;
 }
 void	Bureaucrat::decreaseGrade(void)
 {
-
+	if (_grade == 150)
+		throw GradeTooLowException();
+	_grade += 1;
+	std::cout << _name << " is demoted. He is " << _grade << " now.." <<std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& rhs)

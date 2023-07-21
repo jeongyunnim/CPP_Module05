@@ -2,40 +2,64 @@
 
 int main()
 {
+	Bureaucrat *president;
+	Bureaucrat *slave;
+
+	std::cout << "\n-----------<<Constructor Grade Range Too High Exception Test>>-----------" << std::endl;
 	try
-		{
-		Bureaucrat president(1);
-		Bureaucrat maggot(150);
-		Bureaucrat errorInstanceHigh(151);
-		Bureaucrat errorInstanceLow(0);
-		}
-	catch(const std::exception& e)
+	{
+		president = new Bureaucrat("jeseo", 0);
+		std::cout << *president << std::endl;
+		delete president;
+	}
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
-		return 0;
 	}
-	
 
+	std::cout << "\n-----------<<Constructor Grade Range Too Low Exception Test>>-----------" << std::endl;
+	try
+	{
+		slave = new Bureaucrat("slave", 151);
+		std::cout << *slave << std::endl;
+		delete slave;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
-	// std::cout << "initial value, insertion operator overloading test\n" << std::endl;
-	// std::cout << president << std::endl;
-	// std::cout << maggot << std::endl;
+	std::cout << "\n-----------<<Increased Grade Range Too Low Exception Test>>-----------" << std::endl;
+	try
+	{
+		slave = new Bureaucrat("slave", 130);
+		std::cout << "present value: " << *slave << std::endl;
+		while (1)
+		{
+			slave->decreaseGrade();
+		}
+		std::cout << *slave << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
-	// std::cout << "\nexception test\n" << std::endl;
-
-	// president.increaseGrade(); // too high error
-	// maggot.decreaseGrade(); // too low error
-
-	// std::cout << president << std::endl;
-	// std::cout << maggot << std::endl;
-
-	// Bureaucrat test(51);
-	// std::cout << test << std::endl;
-	// for (int i = 0; i < 50; i++)
-	// {
-	// 	test.increaseGrade();
-	// }
-	// std::cout << test << std::endl;
+	std::cout << "\n-----------<<Decreased Grade Range Too Low Exception Test>>-----------" << std::endl;
+	try
+	{
+		slave = new Bureaucrat("slave", 20);
+		std::cout << "present value: " << *slave << std::endl;
+		while (1)
+		{
+			slave->increaseGrade();
+		}
+		std::cout << *slave << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
 	return (0);
 }
