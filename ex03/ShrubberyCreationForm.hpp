@@ -1,3 +1,7 @@
+#pragma once
+#ifndef _SHRUBBERYCREATIONFORM_HPP_
+#define _SHRUBBERYCREATIONFORM_HPP_
+
 #include <fstream>
 #include "AForm.hpp"
 
@@ -16,3 +20,5 @@ private:
 	static const char* _asciiTree;
 	std::string _target;
 };
+
+#endif

@@ -1,3 +1,7 @@
+#pragma once
+#ifndef _ROBOTOMYREQUESTFORM_HPP_
+#define _ROBOTOMYREQUESTFORM_HPP_
+
 #include <cstdlib>
 #include <sys/time.h>
 #include "AForm.hpp"
@@ -17,3 +21,5 @@ private:
 	static const char* asciiTree;
 	std::string _target;
 };
+
+#endif

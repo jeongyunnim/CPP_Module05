@@ -8,6 +8,7 @@ INCS		=	./Bureaucrat.hpp\
 				./ShrubberyCreationForm.hpp\
 				./RobotomyRequestForm.hpp\
 				./PresidentialPardonForm.hpp\
+				./Intern.hpp\
 				
 SRCS		=	./main.cpp\
 				./Bureaucrat.cpp\
@@ -15,6 +16,7 @@ SRCS		=	./main.cpp\
 				./ShrubberyCreationForm.cpp\
 				./RobotomyRequestForm.cpp\
 				./PresidentialPardonForm.cpp\
+				./Intern.cpp\
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 
