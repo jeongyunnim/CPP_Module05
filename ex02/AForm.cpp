@@ -7,7 +7,12 @@ const char *AForm::GradeTooLowException::what() const throw()
 
 const char *AForm::GradeTooHighException::what() const throw()
 {
-	return ("Grade too High: grade range is 1 - 150");
+	return ("Grade too high: grade range is 1 - 150");
+}
+
+const char *AForm::ExecuteBeforeSignException::what() const throw()
+{
+	return ("Form is not signed: only signed forms can be executed.");
 }
 
 const std::string &AForm::getName(void) const
