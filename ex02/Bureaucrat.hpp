@@ -35,7 +35,7 @@
 #define BACKGROUND_CYAN "\033[46m"
 #define BACKGROUND_WHITE "\033[47m"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -64,7 +64,8 @@ public:
 	Bureaucrat(std::string name);
 	void increaseGrade(void);
 	void decreaseGrade(void);
-	void signForm(Form &target) const;
+	void signForm(AForm &target) const;
+	void excuteForm(const AForm &target) const;
 
 private:
 	Bureaucrat(void);

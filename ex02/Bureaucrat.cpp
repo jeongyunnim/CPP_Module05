@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
@@ -82,21 +82,34 @@ void Bureaucrat::decreaseGrade(void)
 	std::cout << _name << " is demoted. He is " << _grade << " now.." << std::endl;
 }
 
-void Bureaucrat::signForm(Form &target) const
+void Bureaucrat::signForm(AForm &target) const
 {
 	try
 	{
 		target.beSigned(*this);
-		std::cout << YELLOW << _name << BOLDWHITE << " Successfully Signed the " << YELLOW << target.getName() << RESET << std::endl;
+		std::cout << CYAN << _name << BOLDWHITE << " Successfully Signed the " << GREEN << target.getName() << RESET << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << YELLOW << this->_name << RESET << " couldn't sign the <" << target.getName() << "> because grade is too low" << '\n';
+		std::cerr << CYAN << this->_name << RESET << " couldn't sign the <" << GREEN << target.getName() << RESET << "> because grade is too low" << '\n';
 	}
 }
 
-std::ostream &
-operator<<(std::ostream &out, const Bureaucrat &rhs)
+void Bureaucrat::excuteForm(const AForm &form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << CYAN << _name << BOLDWHITE << " executed " << GREEN << form.getName() << RESET << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << CYAN << this->_name << RESET << " couldn't excute the <" << GREEN << form.getName() << RESET << ">: " << e.what() << '\n';
+	}
+}
+
+
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &rhs)
 {
 	out << rhs.getName() << ", bureaucrat grade " << rhs.getGrade();
 	return (out);

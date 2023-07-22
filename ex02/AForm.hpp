@@ -21,7 +21,7 @@ public:
 	public:
 		const char *what() const throw();
 	};
-	class TryingExecuteBeforeSign : public std::exception
+	class ExecuteBeforeSignException : public std::exception
 	{
 	public:
 		const char *what() const throw();
@@ -30,8 +30,9 @@ public:
 	const std::string &getName(void) const;
 	int getRequiredGradeToSign(void) const;
 	int getRequiredGradeToExecute(void) const;
+	bool getSignFlag(void) const;
 
-	~AForm(void);
+	virtual ~AForm(void);
 	AForm(const AForm &other);
 
 	AForm(std::string name, int requiredGradeToSign, int requiredGradeToExecute);
@@ -40,7 +41,7 @@ public:
 	virtual void execute(const Bureaucrat &executor) const = 0;
 
 private:
-	AForm &operator=(const AForm &rhs);
+	AForm &operator=(AForm &rhs);
 	const std::string _name;
 	const int _requiredGradeToSign;
 	const int _requiredGradeToExecute;

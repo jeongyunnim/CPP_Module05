@@ -1,38 +1,47 @@
 #include "ShrubberyCreationForm.hpp"
 
-const char* ShrubberyCreationForm::asciiTree = \
-"                      ___\
-				_,-'\"\"   \"\"\"\"`--.\
-			 ,-'          __,,-- \\\
-		   ,'    __,--\"\"\"\"dF      )\
-		  /   .-\"Hb_,--\"\"dF      /\
-		,'       _Hb ___dF\"-._,-'\
-	  ,'      _,-\"\"\"\"   \"\"--..__\
-	 (     ,-'                  `.\
-	  `._,'     _   _             ;\
-	   ,'     ,' `-'Hb-.___..._,-'\
-	   \\    ,'\"Hb.-'HH`-.dHF\"\
-		`--'   \"Hb  HH  dF\"\
-				\"Hb HH dF\
-				 \"HbHHdF\
-				  |HHHF\
-				  |HHH|\
-				  |HHH|\
-				  |HHH|\
-				  |HHH|\
-				  dHHHb\
-				.dFd|bHb.               o\
-	  o       .dHFdH|HbTHb.          o /\
-\\  Y  |  \\__,dHHFdHH|HHhoHHb.__       Y\
-##########################################";
+const char* ShrubberyCreationForm::_asciiTree = \
+"                      ___\n\
+				_,-'\"\"   \"\"\"\"`--.\n\
+			 ,-'          __,,-- \\\n\
+		   ,'    __,--\"\"\"\"dF      )\n\
+		  /   .-\"Hb_,--\"\"dF      /\n\
+		,'       _Hb ___dF\"-._,-'\n\
+	  ,'      _,-\"\"\"\"   \"\"--..__\n\
+	 (     ,-'                  `.\n\
+	  `._,'     _   _             ;\n\
+	   ,'     ,' `-'Hb-.___..._,-'\n\
+	   \\    ,'\"Hb.-'HH`-.dHF\"\n\
+		`--'   \"Hb  HH  dF\"\n\
+				\"Hb HH dF\n\
+				 \"HbHHdF\n\
+				  |HHHF\n\
+				  |HHH|\n\
+				  |HHH|\n\
+				  |HHH|\n\
+				  |HHH|\n\
+				  dHHHb\n\
+				.dFd|bHb.               o\n\
+	  o       .dHFdH|HbTHb.          o /\n\
+\\  Y  |  \\__,dHHFdHH|HHhoHHb.__       Y\n\
+##########################################\n";
 
 ShrubberyCreationForm::ShrubberyCreationForm(void)
 	: AForm("Shurubery creation form", 145, 137)
 {}
 
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
+	: AForm("Shurubery creation form", 145, 137)
+	, _target(target)
+{}
+
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {}
 
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs) {}
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm& rhs)
+{
+	(void)rhs.getName();
+	return (*this);
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 	: AForm(other.getName(), other.getRequiredGradeToSign(), other.getRequiredGradeToExecute())
@@ -42,17 +51,15 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
 	if (executor.getGrade() > this->getRequiredGradeToExecute())
 		throw GradeTooLowException();
-	else if (signFlag == false)
-	{
-
-	}
+	else if (getSignFlag() == false)
+		throw ExecuteBeforeSignException();
 	else
 	{
 		std::ofstream	fout;
 		std::string		fileName;
 
 		fout.exceptions(std::ofstream::badbit);
-		fileName = "./" + executor.getName() + "_shrubbery";
+		fileName = "./" + _target + "_shrubbery";
 		try
 		{
 			fout.open(fileName);
@@ -62,7 +69,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 			std::cerr << e.what() << std::endl;
 			return ;
 		}
-		fout << asciiTree;
+		fout << _asciiTree;
 		fout.close();
 	}
 }

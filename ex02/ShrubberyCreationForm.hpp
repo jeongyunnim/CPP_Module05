@@ -8,9 +8,11 @@ public:
 	~ShrubberyCreationForm(void);
 	ShrubberyCreationForm(const ShrubberyCreationForm& other);
 	
+	ShrubberyCreationForm(const std::string& target);
 	void execute(const Bureaucrat &executor) const;
 
 private:
-	ShrubberyCreationForm& operator=(const ShrubberyCreationForm& rhs);
-	static const char* asciiTree;
+	ShrubberyCreationForm& operator=(ShrubberyCreationForm& rhs);
+	static const char* _asciiTree;
+	std::string _target;
 };

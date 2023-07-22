@@ -2,7 +2,7 @@
 
 const char *AForm::GradeTooLowException::what() const throw()
 {
-	return ("Grade too low: grade range is 1 - 150");
+	return ("Grade too low: grade range is 1 - 150 or Grade is lower than required");
 }
 
 const char *AForm::GradeTooHighException::what() const throw()
@@ -29,6 +29,11 @@ int AForm::getRequiredGradeToExecute(void) const
 	return (_requiredGradeToExecute);
 }
 
+bool AForm::getSignFlag(void) const
+{
+	return (_signFlag);
+}
+
 AForm::AForm(void)
 	: _name("* default Aform *"), _requiredGradeToSign(150), _requiredGradeToExecute(150), _signFlag(false)
 {
@@ -36,8 +41,9 @@ AForm::AForm(void)
 
 AForm::~AForm(void) {}
 
-AForm &AForm::operator=(const AForm &rhs)
+AForm &AForm::operator=(AForm &rhs)
 {
+	(void)rhs._name;
 	return (*this);
 }
 

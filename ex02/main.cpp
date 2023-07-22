@@ -1,79 +1,76 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
-	Bureaucrat president("jeseo", 1);
-	Bureaucrat slave("slave", 150);
-	Form *settingLunchMenu;
+	Bureaucrat	*bureaucrats[4];
+	AForm		*forms[3];
 
-	std::cout << "\n-----------<<Constructor Grade Range Too High Exception Test>>-----------" << std::endl;
+	std::cout << BOLDWHITE << "\n-----------<<Form Test>>-----------" << RESET << std::endl;
 	try
 	{
-		std::cout << "sign value is 0 -> It has to occur too high exception" << std::endl;
-		settingLunchMenu = new Form("setting lunch menu", 0, 150);
-		delete settingLunchMenu;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		std::cout << "execute value is 0 -> It has to occur too high exception" << std::endl;
-		settingLunchMenu = new Form("setting lunch menu", 0, 150);
-		delete settingLunchMenu;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+		bureaucrats[0] = new Bureaucrat("president", 1);
+		bureaucrats[1] = new Bureaucrat("some bureaucrat of grade 45", 45);
+		bureaucrats[2] = new Bureaucrat("some bureaucrat of grade 80", 80);
+		bureaucrats[3] = new Bureaucrat("criminal", 150);
+		forms[0] = new ShrubberyCreationForm("jeseo's backyard");
+		forms[1] = new RobotomyRequestForm("evaluator");
+		forms[2] = new PresidentialPardonForm("gil-dong Hong");
 
-	std::cout << "\n-----------<<Constructor Grade Range Too Low Exception Test>>-----------" << std::endl;
-	try
-	{
-		std::cout << "sign value is 151 -> It has to occur too low exception" << std::endl;
-		settingLunchMenu = new Form("setting lunch menu", 151, 1);
-		delete settingLunchMenu;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		std::cout << "excute value is 151 -> It has to occur too low exception" << std::endl;
-		settingLunchMenu = new Form("setting lunch menu", 1, 151);
-		delete settingLunchMenu;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+		std::cout << "\n\nGrade 1 tyring to execute not signed form\n1.[X] 2.[X] 3.[X]" << std::endl;
+		for (int i = 0; i < 3; i++)
+		{
+			bureaucrats[0]->excuteForm(*forms[i]);
+		}
 
-	std::cout << "\n-----------<<Sign Test>>-----------" << std::endl;
-	try
-	{
-		settingLunchMenu = new Form("setting lunch menu", 50, 20);
-		std::cout << *settingLunchMenu << std::endl;
-		president.signForm(*settingLunchMenu);
-		slave.signForm(*settingLunchMenu);
-		delete settingLunchMenu;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		Form electPresident("elect president", 10, 150);
-		Form nominateSomeone("nominate someone", 150, 150);
-		std::cout << electPresident << std::endl;
-		president.signForm(electPresident);
-		slave.signForm(electPresident);
-		std::cout << nominateSomeone << std::endl;
-		president.signForm(nominateSomeone);
-		slave.signForm(nominateSomeone);
+		bureaucrats[0]->signForm(*forms[0]);
+		bureaucrats[2]->excuteForm(*forms[0]);
+
+		// std::cout << "\n\ngrade 80 tyring to sign not signed form\n1.[O]/[O] 2.[O]/[X] 3.[X]/[X]" << std::endl;
+		// for (int i = 0; i < 3; i++)
+		// {
+		// 	bureaucrats[2]->signForm(*forms[i]);
+		// 	bureaucrats[2]->excuteForm(*forms[i]);
+		// }
+
+		// std::cout << "\n\ngrade 45 tyring to sign not signed form\n1.[O]/[O] 2.[O]/[O] 3.[X]/[X]" << std::endl;
+		// for (int i = 0; i < 3; i++)
+		// {
+		// 	bureaucrats[1]->signForm(*forms[i]);
+		// 	bureaucrats[1]->excuteForm(*forms[i]);
+		// }
+
+		// std::cout << "\n\ngrade 1 tyring to sign not signed form\n1.[O]/[O] 2.[O]/[O] 3.[O]/[O]" << std::endl;
+		// for (int i = 0; i < 3; i++)
+		// {
+		// 	bureaucrats[0]->signForm(*forms[i]);
+		// 	bureaucrats[0]->excuteForm(*forms[i]);
+		// }
+
+		// std::cout << "\n\ngrade 150 tyring to sign not signed form\n1.[X]/[X] 2.[X]/[X] 3.[X]/[X]" << std::endl;
+		// for (int i = 0; i < 3; i++)
+		// {
+		// 	bureaucrats[3]->signForm(*forms[i]);
+		// 	bureaucrats[2]->excuteForm(*forms[i]);
+		// }
+
+		// std::cout << BOLDWHITE << "\n-----------<<Randomness Test>>-----------" << RESET << std::endl;
+		// for (int i = 0; i < 15; i++)
+		// {
+		// 	std::cout << "\n[" << i + 1 << "]" << std::endl;
+		// 	bureaucrats[0]->excuteForm(*forms[1]);
+		// }
+
+		delete bureaucrats[0];
+		delete bureaucrats[1];
+		delete bureaucrats[2];
+		delete bureaucrats[3];
+		delete forms[0];
+		delete forms[1];
+		delete forms[2];
 	}
 	catch (const std::exception &e)
 	{
