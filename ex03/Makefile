@@ -3,6 +3,8 @@ NAME 		=	ex02
 CXX 		=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
+OUTPUTS		=	*_shrubbery
+
 INCS		=	./Bureaucrat.hpp\
 				./AForm.hpp\
 				./ShrubberyCreationForm.hpp\
@@ -31,7 +33,7 @@ $(NAME): $(OBJS) $(INCS)
 	$(CXX) $(CXXFLAGS) $(INCS) -c $^ -o $@
 
 clean: 
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OUTPUTS)
 
 fclean: clean
 	$(RM) $(NAME)
