@@ -37,7 +37,7 @@ int main()
 		bureaucrats[0]->signForm(*forms[0]);
 		bureaucrats[2]->executeForm(*forms[0]);
 
-		std::cout << "\n\ngrade 80 tyring to sign not signed form\n1.[O]/[O] 2.[O]/[X] 3.[X]/[X]" << std::endl;
+		std::cout << "\n\ngrade 80 tyring to sign not signed form\n1.[O]/[O] 2.[X]/[X] 3.[X]/[X]" << std::endl;
 		for (int i = 0; i < 3; i++)
 		{
 			bureaucrats[2]->signForm(*forms[i]);
@@ -62,7 +62,7 @@ int main()
 		for (int i = 0; i < 3; i++)
 		{
 			bureaucrats[3]->signForm(*forms[i]);
-			bureaucrats[2]->executeForm(*forms[i]);
+			bureaucrats[3]->executeForm(*forms[i]);
 		}
 
 		std::cout << BOLDWHITE << "\n-----------<<Randomness Test>>-----------" << RESET << std::endl;
