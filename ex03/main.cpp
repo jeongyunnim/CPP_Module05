@@ -35,38 +35,38 @@ int main()
 		std::cout << "\n\nGrade 1 tyring to execute not signed form\n1.[X] 2.[X] 3.[X]" << std::endl;
 		for (int i = 0; i < 3; i++)
 		{
-			bureaucrats[0]->excuteForm(*forms[i]);
+			bureaucrats[0]->executeForm(*forms[i]);
 		}
 
 		bureaucrats[0]->signForm(*forms[0]);
-		bureaucrats[2]->excuteForm(*forms[0]);
+		bureaucrats[2]->executeForm(*forms[0]);
 
 		std::cout << "\n\ngrade 80 tyring to sign not signed form\n1.[O]/[O] 2.[O]/[X] 3.[X]/[X]" << std::endl;
 		for (int i = 0; i < 3; i++)
 		{
 			bureaucrats[2]->signForm(*forms[i]);
-			bureaucrats[2]->excuteForm(*forms[i]);
+			bureaucrats[2]->executeForm(*forms[i]);
 		}
 
 		std::cout << "\n\ngrade 45 tyring to sign not signed form\n1.[O]/[O] 2.[O]/[O] 3.[X]/[X]" << std::endl;
 		for (int i = 0; i < 3; i++)
 		{
 			bureaucrats[1]->signForm(*forms[i]);
-			bureaucrats[1]->excuteForm(*forms[i]);
+			bureaucrats[1]->executeForm(*forms[i]);
 		}
 
 		std::cout << "\n\ngrade 1 tyring to sign not signed form\n1.[O]/[O] 2.[O]/[O] 3.[O]/[O]" << std::endl;
 		for (int i = 0; i < 3; i++)
 		{
 			bureaucrats[0]->signForm(*forms[i]);
-			bureaucrats[0]->excuteForm(*forms[i]);
+			bureaucrats[0]->executeForm(*forms[i]);
 		}
 
 		std::cout << "\n\ngrade 150 tyring to sign not signed form\n1.[X]/[X] 2.[X]/[X] 3.[X]/[X]" << std::endl;
 		for (int i = 0; i < 3; i++)
 		{
 			bureaucrats[3]->signForm(*forms[i]);
-			bureaucrats[2]->excuteForm(*forms[i]);
+			bureaucrats[2]->executeForm(*forms[i]);
 		}
 
 		std::cout << BOLDWHITE << "\n-----------<<Shrubbery creation form Test>>-----------" << RESET << std::endl;
@@ -79,7 +79,7 @@ int main()
 		for (int i = 0; i < 5; i++)
 		{
 			shrubberyCreationTest[i]->beSigned(*bureaucrats[0]);
-			bureaucrats[0]->excuteForm(*shrubberyCreationTest[i]);
+			bureaucrats[0]->executeForm(*shrubberyCreationTest[i]);
 			delete shrubberyCreationTest[i];
 			shrubberyCreationTest[i] = NULL;
 		}

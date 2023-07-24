@@ -42,7 +42,7 @@ int main()
 	}
 	try
 	{
-		std::cout << "excute value is 151 -> It has to occur too low exception" << std::endl;
+		std::cout << "execute value is 151 -> It has to occur too low exception" << std::endl;
 		settingLunchMenu = new Form("setting lunch menu", 1, 151);
 		delete settingLunchMenu;
 	}

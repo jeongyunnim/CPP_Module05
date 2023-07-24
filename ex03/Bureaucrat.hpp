@@ -65,7 +65,7 @@ public:
 	void increaseGrade(void);
 	void decreaseGrade(void);
 	void signForm(AForm &target) const;
-	void excuteForm(const AForm &target) const;
+	void executeForm(const AForm &target) const;
 
 private:
 	Bureaucrat(void);
